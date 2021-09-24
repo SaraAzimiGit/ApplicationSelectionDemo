@@ -100,8 +100,8 @@ if Menu_Choices == "Select combination of sensors based on application criteria"
                     value_acc = multi_row.Accuracy.item()
                     if (value_occ_res >= max_occ_res) and (value_spatial_res <= max_spatial_res) and (value_acc <= max_acc):  # pick any item in a  combination that meets the criteria
                         is_ok = True
-                        if is_ok:
-                            info=df_0.loc[i,:]
-                            info=info.drop(columns='Sensor')
-                            info.update(df1_1)
-                            st.dataframe(info)
+              if is_ok:
+                  info=df_0.loc[i,:]
+                  info=info.drop(columns='Sensor')
+                  info.update(df1_1)
+                  st.dataframe(info)
