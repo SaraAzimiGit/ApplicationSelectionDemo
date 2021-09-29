@@ -11,8 +11,8 @@ def Convert(string):
     li=list(string.split(",",))
     return li
 
-siteHeader=st.container()
-appSelection=st.container()
+siteHeader=st.beta_container()
+appSelection=st.beta_container()
 
 
 with siteHeader:
@@ -91,14 +91,13 @@ with st.form(key="Selecting columns"):
             st.dataframe(filter_table1)
 
         if Menu_Choices == "Select combination of sensors based on application criteria":
-            info_sensor_0 = {
-                'Sensor': ['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera', 'Optical camera',
+            info_sensor_0 = {'Sensor': ['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera', 'Optical camera',
                            'Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door/CO2', 'Piezoelectric'],
-                'Occ_Res': [2, 2, 3, 3, 3, 2, 2, 1],
-                'Spatial_Res': [4, 4, 4, 3, 3, 3, 3, 4],
-                'Accuracy': [1, 3, 3, 3, 3, 2, 1, 1],
-                'Privacy': [3, 3, 1, 1, 1, 3, 3, 3],
-                'Cost': [1, 3, 3, 1, 2, 1, 1, 1]}
+                            'Occ_Res': [2, 2, 3, 3, 3, 2, 2, 1],
+                            'Spatial_Res': [4, 4, 4, 3, 3, 3, 3, 4],
+                            'Accuracy': [1, 3, 3, 3, 3, 2, 1, 1],
+                            'Privacy': [3, 3, 1, 1, 1, 3, 3, 3],
+                            'Cost': [1, 3, 3, 1, 2, 1, 1, 1]}
             columns_0 = ['Sensor', 'Occ_Res', 'Spatial_Res', 'Accuracy', 'Privacy', 'Cost']
             df_0 = pd.DataFrame(data=info_sensor_0, columns=columns_0,
                                 index=['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera',
@@ -107,7 +106,9 @@ with st.form(key="Selecting columns"):
             min_table = df_0.loc[(min_occ_res <= df_0['Occ_Res']) & (min_acc <= df_0['Accuracy']) & (
                         min_spatial_res <= df_0['Spatial_Res'])]
             sensor = min_table['Sensor']
-
+            min_table = df_0.loc[(min_occ_res <= df_0['Occ_Res']) & (min_acc <= df_0['Accuracy']) & (
+                        min_spatial_res <= df_0['Spatial_Res'])]
+            
             for f in range(len(sensor) + 1):  # iterate number of items in combination
                 if f >= 2:
                     for i in r_subset(sensor, f):  # iterate over every combination
