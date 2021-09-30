@@ -110,7 +110,7 @@ with appSelection:
                 min_table = df_0.loc[(min_occ_res <= df_0['Occupancy_Resolution']) & (min_acc <= df_0['Accuracy']) & (min_spatial_res <= df_0['Spatial_Resolution'])]
 
                 for f in range(len(sensor) + 1):  # iterate number of items in combination
-                    if f >= 2:
+                    if f >= 1:
                         for i in r_subset(sensor, f):  # iterate over every combination
                             is_ok = False
                             for key in i:  # iterate over any item in a combination
