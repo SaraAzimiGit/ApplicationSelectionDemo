@@ -63,7 +63,7 @@ with appSelection:
             result_1 = df_1.loc[q1]
             app_selected=pd.DataFrame(data=result_1,columns=columns)
             app_selected.update(df)
-            st.dataframe(app_selected)
+           
 
             max_occ_res = app_selected.Occupancy_Resolution.max()
             max_spatial_res = app_selected.Spatial_Resolution.max()
