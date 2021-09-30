@@ -20,54 +20,47 @@ with siteHeader:
     st.text('With this tool you can find out which occupancy sensing technology best suits your '
             'facility management application needs')
 with appSelection:
-    info_app={'Occ_Res':[4,4,2,3,3,3,2,1,2,1,1,2,2],
-              'Spatial_Res':[3,3,2,3,3,2,3,2,2,3,4,2,4],
-              'Accuracy':[3,3,2,3,3,3,2,1,1,3,2,1,1],
+    info_app={'Occ_Res':[4,4,2,3,3,3,2,1,2,1,1,2,2,2],
+              'Spatial_Res':[3,3,2,3,3,2,3,2,2,3,4,2,2,2],
+              'Accuracy':[3,3,2,3,3,3,2,1,1,3,2,1,1,1],
               }
-    info_app_1={'Occ_Res':['Tracking','Tracking','Count','Identity','Identity','Identity','Count','Presence','Count','Presence','Presence','Count','Count'],
-              'Spatial_Res':['Room','Room','Floor','Room','Room','Floor','Room','Floor','Floor','Room','Workstation','Floor','Floor'],
-              'Accuracy':['High','High','Medium','High','High','High','Medium','Low','Low','High','Medium','Low','Low'],
+    info_app_1={'Occ_Res':['Tracking','Tracking','Count','Identity','Identity','Identity','Count','Presence','Count','Presence','Presence','Count','Count','Count'],
+              'Spatial_Res':['Room','Room','Floor','Room','Room','Floor','Room','Floor','Floor','Room','Workstation','Floor','Floor','Floor'],
+              'Accuracy':['High','High','Medium','High','High','High','Medium','Low','Low','High','Medium','Low','Low','Low'],
               }
     columns=['Occ_Res','Spatial_Res','Accuracy']
     df=pd.DataFrame(data=info_app,columns=columns,index=['Emergency evacuation and rescue','Disease control','Space utilization rate','Access control','Intrusion detection',
-        'Surveillance','Smart cleaning','Heating/cooling','DCV','Lighting','Smart plugs','Heating/cooling usage','Plugload usage'])
+        'Surveillance','Smart cleaning','Heating/cooling control','Demand control ventilation','Lighting control','Smart plugs','Heating/cooling energy usage','Lighting energy usage','Plug load energy usage'])
     df_1=pd.DataFrame(data=info_app_1,columns=columns,index=['Emergency evacuation and rescue','Disease control','Space utilization rate','Access control','Intrusion detection',
-        'Surveillance','Smart cleaning','Heating/cooling','DCV','Lighting','Smart plugs','Heating/cooling usage','Plugload usage'])
+        'Surveillance','Smart cleaning','Heating/cooling','Demand control ventilation','Lighting control','Smart plugs','Heating/cooling energy usage','Lighting energy usage','Plug load energy usage'])
 
     info_sensor_0 = {
-        'Occ_Res': [2, 2, 3, 3, 3, 2, 1, 2, 1],
-        'Spatial_Res': [4, 4, 4, 3, 3, 3, 3, 3, 4],
+        'Occ_Res': [1, 2, 3, 4, 4, 2, 1, 2, 1],
+        'Spatial_Res': [4, 4, 4, 4, 3, 3, 3, 3, 3],
         'Accuracy': [1, 3, 3, 3, 3, 2, 1, 1, 1],
-        'Tracking': [0, 0, 0, 1, 1, 0, 0, 0, 0],
         'Privacy': [3, 3, 1, 1, 1, 3, 3, 3, 3],
         'Cost': [1, 3, 3, 1, 2, 1, 1, 1, 1]}
     info_sensor_1 = {
-        'Occ_Res': ['Presence', 'Count', 'Identity', 'Tracking', 'Tracking', 'Count', 'Presence', 'Count',
-                    'Presence'],
-        'Spatial_Res': ['Workstation', 'Workstation', 'Workstation', 'Workstation', 'Room', 'Room', 'Room', 'Room',
-                        'Room'],
+        'Occ_Res': ['Presence', 'Count', 'Identity', 'Tracking', 'Tracking', 'Count', 'Presence', 'Count','Presence'],
+        'Spatial_Res': ['Workstation', 'Workstation', 'Workstation', 'Workstation', 'Room', 'Room', 'Room', 'Room','Room'],
         'Accuracy': ['Low', 'High', 'High', 'High', 'High', 'Medium', 'Low', 'Low', 'Low'],
         'Privacy': ['High', 'High', 'Low', 'Low', 'Low', 'High', 'High', 'High', 'High'],
         'Cost': ['Low', 'High', 'High', 'Low', 'Medium', 'Low', 'Low', 'Low', 'Low']}
 
     columns_sensor = ['Occ_Res', 'Spatial_Res', 'Accuracy', 'Privacy', 'Cost']
     df_0 = pd.DataFrame(data=info_sensor_0, columns=columns_sensor,
-                        index=['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera',
-                               'Optical camera',
-                               'Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door', 'CO2',
-                               'Piezoelectric'])
+                        index=['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera','Optical camera',
+                               'Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door', 'CO2','Piezoelectric'])
     df1_1 = pd.DataFrame(data=info_sensor_1, columns=columns_sensor,
-                         index=['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera',
-                                'Optical camera',
-                                'Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door', 'CO2',
-                                'Piezoelectric'])
+                         index=['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera','Optical camera',
+                                'Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door', 'CO2','Piezoelectric'])
 
-Menu_Items = ["View all sensors", "Select single type sensor based on application criteria",
+Menu_Items = ["View all sensors", "Select single type of sensor based on application criteria",
                   "Select combination of sensors based on application criteria"]
 with st.form(key="Selecting columns"):
-    q1 = st.multiselect('Choose the desired application', df_1.index)
+    q1 = st.multiselect('Select facility management application(s)', df_1.index)
     Menu_Choices = st.selectbox('Select the options', Menu_Items)
-    submit_button = st.form_submit_button(label='Submit')
+    submit_button = st.form_submit_button(label='Update')
     if submit_button:
         result_1 = df_1.loc[q1]
         app_selected=pd.DataFrame(data=result_1,columns=columns)
@@ -108,7 +101,7 @@ with st.form(key="Selecting columns"):
             sensor = min_table['Sensor']
             min_table = df_0.loc[(min_occ_res <= df_0['Occ_Res']) & (min_acc <= df_0['Accuracy']) & (
                         min_spatial_res <= df_0['Spatial_Res'])]
-            
+
             for f in range(len(sensor) + 1):  # iterate number of items in combination
                 if f >= 2:
                     for i in r_subset(sensor, f):  # iterate over every combination
