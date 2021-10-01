@@ -46,7 +46,7 @@ best suits your facility management application needs""")
                                    'Heating/cooling energy usage', 'Lighting energy usage', 'Plug load energy usage'])
         info_sensor_0 = {
             'Sensor':['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera',
-                                   'Optical camera','Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door', 'CO2','Piezoelectric']
+                                   'Optical camera','Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door', 'CO2','Piezoelectric'],
             'Occupancy_Resolution': [1, 2, 3, 4, 4, 2, 1, 2, 1],
             'Spatial_Resolution': [4, 4, 4, 4, 3, 3, 3, 3, 3],
             'Accuracy': [1, 3, 3, 3, 3, 2, 1, 1, 1],
