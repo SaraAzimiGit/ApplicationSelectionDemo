@@ -97,10 +97,9 @@ best suits your facility management application needs""")
                 filter_table1.update(df1_1)
                 st.dataframe(filter_table1)
             if Menu_Choices == "Select combination of sensors based on application criteria":
-
+                
                 min_table = df_0.loc[(min_occ_res <= df_0['Occupancy_Resolution']) & (min_acc <= df_0['Accuracy']) & (min_spatial_res <= df_0['Spatial_Resolution'])]
-                sensor = min_table.index
-                min_table = df_0.loc[(min_occ_res <= df_0['Occupancy_Resolution']) & (min_acc <= df_0['Accuracy']) & (min_spatial_res <= df_0['Spatial_Resolution'])]
+                sensor = min_table['Sensor']
 
                 for f in range(len(sensor) + 1):  # iterate number of items in combination
                     if f>=2:
