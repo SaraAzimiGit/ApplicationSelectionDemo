@@ -65,7 +65,7 @@ with appSelection:
                                 'Optical camera',
                                 'Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door', 'CO2',
                                 'Piezoelectric'])
-    Menu_Items = ["View all sensors", "Select single type of sensor based on application criteria",
+    Menu_Items = ["View all sensors available", "Select single type of sensor based on application criteria",
                   "Select combination of sensors based on application criteria"]
     with st.form(key="Selecting columns"):
         q1 = st.multiselect('Select facility management application(s)', df_1.index)
@@ -85,7 +85,7 @@ with appSelection:
             min_spatial_res = app_selected.Spatial_Resolution.min()
             min_acc = app_selected.Accuracy.min()
 
-            if Menu_Choices == "View all sensors":
+            if Menu_Choices == "View all sensors available":
                 st.write("Below are all the sensors Available")
                 st.dataframe(df1_1)
             if Menu_Choices == "Select single type of sensor based on application criteria":
