@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 from itertools import combinations
+showWarningOnDirectExecution = True
+dataFrameSerialization = "arrow"
 
 @st.cache
 def r_subset(arr, r):
