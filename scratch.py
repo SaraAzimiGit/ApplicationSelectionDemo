@@ -70,7 +70,7 @@ with appSelection:
     with st.form(key="Selecting columns"):
         q1 = st.multiselect('Select facility management application(s)', df_1.index)
         Menu_Choices = st.selectbox('Select the options', Menu_Items)
-        submit_button = st.form_submit_button(label='Submit')
+        submit_button = st.form_submit_button(label='Update')
         if submit_button:
             result_1 = df_1.loc[q1]
             app_selected = pd.DataFrame(data=result_1, columns=columns)
