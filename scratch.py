@@ -60,7 +60,7 @@ best suits your facility management application needs""")
             'Accuracy': ['Low', 'High', 'High', 'High', 'High', 'Medium', 'Low', 'Low', 'Low'],
             'Privacy': ['High', 'High', 'Low', 'Low', 'Low', 'High', 'High', 'High', 'High'],
             'Cost': ['Low', 'High', 'High', 'Low', 'Medium', 'Low', 'Low', 'Low', 'Low']}
-        columns_sensor_0 = ['Occupancy_Resolution', 'Spatial_Resolution', 'Accuracy', 'Privacy', 'Cost']
+        columns_sensor_0 = ['Sensor','Occupancy_Resolution', 'Spatial_Resolution', 'Accuracy', 'Privacy', 'Cost']
         columns_sensor_1 = ['Occupancy_Resolution', 'Spatial_Resolution', 'Accuracy', 'Privacy', 'Cost']
 
         df_0 = pd.DataFrame(data=info_sensor_0, columns=columns_sensor_0,
