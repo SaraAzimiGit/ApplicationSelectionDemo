@@ -2,11 +2,6 @@ import streamlit as st
 import pandas as pd
 from itertools import combinations
 
-st.set_page_config(
-     page_title='Streamlit cheat sheet',
-     layout="wide",
-     initial_sidebar_state="expanded",
-)
 
 @st.cache
 def r_subset(arr, r):
