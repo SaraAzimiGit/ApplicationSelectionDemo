@@ -107,6 +107,8 @@ best suits your facility management application needs""")
                 df_0 = pd.DataFrame(data=info_sensor_0, columns=columns_0,index=['PIR/Break beam/Ultrasonic/Microwave',
                                            'TOF/Binocular/SL/Infrared camera','Optical camera', 'Wi-Fi', 'RFID tag/UWB/Bluetooth',
                                            'Acoustic/Smart meters','Door/CO2', 'Piezoelectric'])
+                st.dataframe(df_0)
+                st.dataframe(df1_1)
                 min_table = df_0.loc[(min_occ_res <= df_0['Occupancy_Resolution']) & (min_acc <= df_0['Accuracy']) & (min_spatial_res <= df_0['Spatial_Resolution'])]
                 sensor = min_table['Sensor']
                 min_table = df_0.loc[(min_occ_res <= df_0['Occupancy_Resolution']) & (min_acc <= df_0['Accuracy']) & (min_spatial_res <= df_0['Spatial_Resolution'])]
