@@ -123,7 +123,7 @@ best suits your facility management application needs""")
                                 if (value_occ_res >= max_occ_res) and (value_spatial_res >= max_spatial_res) and (value_acc >= max_acc):  # pick any item in a  combination that meets the criteria
                                     info = df_0.loc[i, :]
                                     info = info.drop(columns='Sensor')
-                                    info.update(df1_1)
+                                    #info.update(df1_1)
                                     st.dataframe(info)
 if __name__ == "__main__":
     main()
