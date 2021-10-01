@@ -45,6 +45,8 @@ best suits your facility management application needs""")
                                    'Ventilation control', 'Lighting control', 'Plug load control',
                                    'Heating/cooling energy usage', 'Lighting energy usage', 'Plug load energy usage'])
         info_sensor_0 = {
+            'Sensor':['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera',
+                                   'Optical camera','Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door', 'CO2','Piezoelectric']
             'Occupancy_Resolution': [1, 2, 3, 4, 4, 2, 1, 2, 1],
             'Spatial_Resolution': [4, 4, 4, 4, 3, 3, 3, 3, 3],
             'Accuracy': [1, 3, 3, 3, 3, 2, 1, 1, 1],
@@ -58,19 +60,19 @@ best suits your facility management application needs""")
             'Accuracy': ['Low', 'High', 'High', 'High', 'High', 'Medium', 'Low', 'Low', 'Low'],
             'Privacy': ['High', 'High', 'Low', 'Low', 'Low', 'High', 'High', 'High', 'High'],
             'Cost': ['Low', 'High', 'High', 'Low', 'Medium', 'Low', 'Low', 'Low', 'Low']}
-        columns_sensor = ['Occupancy_Resolution', 'Spatial_Resolution', 'Accuracy', 'Privacy', 'Cost']
+        columns_sensor_0 = ['Occupancy_Resolution', 'Spatial_Resolution', 'Accuracy', 'Privacy', 'Cost']
+        columns_sensor_1 = ['Occupancy_Resolution', 'Spatial_Resolution', 'Accuracy', 'Privacy', 'Cost']
 
-        df_0 = pd.DataFrame(data=info_sensor_0, columns=columns_sensor,
+        df_0 = pd.DataFrame(data=info_sensor_0, columns=columns_sensor_0,
                             index=['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera',
                                    'Optical camera','Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door', 'CO2','Piezoelectric'])
-        df1_1 = pd.DataFrame(data=info_sensor_1, columns=columns_sensor,
+        df1_1 = pd.DataFrame(data=info_sensor_1, columns=columns_sensor_1,
                              index=['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera',
-                                    'Optical camera',
-                                    'Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door', 'CO2',
-                                    'Piezoelectric'])
+                                    'Optical camera','Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door', 'CO2','Piezoelectric'])
         Menu_Items = ["View all sensors available", "Select single type of sensor based on application criteria",
                       "Select combination of sensors based on application criteria"]
         with st.form(key="Selecting columns"):
+            
             q1 = st.multiselect('Select facility management application(s)', df_1.index)
             Menu_Choices = st.selectbox('Select your sensor options', Menu_Items)
             submit_button = st.form_submit_button(label='Update')
@@ -91,26 +93,15 @@ best suits your facility management application needs""")
                 st.write("Below are all the sensors Available")
                 st.dataframe(df1_1)
             if Menu_Choices == "Select single type of sensor based on application criteria":
+                df_0 = df_0.drop(columns='Sensor')
                 filter_table1 = df_0.loc[(df_0['Occupancy_Resolution'] >= max_occ_res) & (df_0['Accuracy'] >= max_acc) & (
                             df_0['Spatial_Resolution'] >= max_spatial_res)]
                 filter_table1.update(df1_1)
                 st.dataframe(filter_table1)
             if Menu_Choices == "Select combination of sensors based on application criteria":
-                info_sensor_0 = {'Sensor': ['PIR/Break beam/Ultrasonic/Microwave', 'TOF/Binocular/SL/Infrared camera',
-                               'Optical camera','Wi-Fi', 'RFID tag/UWB/Bluetooth', 'Acoustic/Smart meters', 'Door/CO2','Piezoelectric'],
-                                'Occupancy_Resolution': [2, 2, 3, 3, 3, 2, 2, 1],
-                                'Spatial_Resolution': [4, 4, 4, 3, 3, 3, 3, 4],
-                                'Accuracy': [1, 3, 3, 3, 3, 2, 1, 1],
-                                'Privacy': [3, 3, 1, 1, 1, 3, 3, 3],
-                                'Cost': [1, 3, 3, 1, 2, 1, 1, 1]}
-                columns_0 = ['Sensor', 'Occupancy_Resolution', 'Spatial_Resolution', 'Accuracy', 'Privacy', 'Cost']
-                df_0 = pd.DataFrame(data=info_sensor_0, columns=columns_0,index=['PIR/Break beam/Ultrasonic/Microwave',
-                                           'TOF/Binocular/SL/Infrared camera','Optical camera', 'Wi-Fi', 'RFID tag/UWB/Bluetooth',
-                                           'Acoustic/Smart meters','Door/CO2', 'Piezoelectric'])
-                st.dataframe(df_0)
-                st.dataframe(df1_1)
+
                 min_table = df_0.loc[(min_occ_res <= df_0['Occupancy_Resolution']) & (min_acc <= df_0['Accuracy']) & (min_spatial_res <= df_0['Spatial_Resolution'])]
-                sensor = min_table['Sensor']
+                sensor = min_table.index
                 min_table = df_0.loc[(min_occ_res <= df_0['Occupancy_Resolution']) & (min_acc <= df_0['Accuracy']) & (min_spatial_res <= df_0['Spatial_Resolution'])]
 
                 for f in range(len(sensor) + 1):  # iterate number of items in combination
