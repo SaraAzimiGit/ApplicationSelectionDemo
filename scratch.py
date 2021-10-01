@@ -114,7 +114,7 @@ best suits your facility management application needs""")
                                 value_occ_res = multi_row['Occupancy Resolution'].item()
                                 value_spatial_res = multi_row['Spatial Resolution'].item()
                                 value_acc = multi_row['Accuracy'].item()
-                                if value_occ_res < max_occ_res or value_spatial_res < max_spatial_res or value_acc < max_acc:  # pick any item in a  combination that meets the criteria
+                                if value_occ_res >= max_occ_res or value_spatial_res >= max_spatial_res or value_acc >= max_acc:  # pick any item in a  combination that meets the criteria
                                     info = df_0.loc[i,:]
                                     info = info.drop(columns='Sensor')
                                     info.update(df1_1)
