@@ -92,8 +92,7 @@ best suits your facility management application needs""")
                 st.dataframe(df1_1)
             if Menu_Choices == "Select single type of sensor based on application criteria":
                 df_0 = df_0.drop(columns='Sensor')
-                filter_table1 = df_0.loc[(df_0['Occupancy_Resolution'] >= max_occ_res) & (df_0['Accuracy'] >= max_acc) & (
-                            df_0['Spatial_Resolution'] >= max_spatial_res)]
+                filter_table1 = df_0.loc[(df_0['Occupancy_Resolution'] >= max_occ_res) & (df_0['Accuracy'] >= max_acc) & (df_0['Spatial_Resolution'] >= max_spatial_res)]
                 filter_table1.update(df1_1)
                 st.dataframe(filter_table1)
             if Menu_Choices == "Select combination of sensors based on application criteria":
@@ -104,7 +103,6 @@ best suits your facility management application needs""")
                 for f in range(len(sensor) + 1):  # iterate number of items in combination
                     if f>=2:
                         for i in r_subset(sensor, f):  # iterate over every combination
-                            
                             for key in i:  # iterate over any item in a combination
                                 multi_row = min_table[min_table['Sensor'].isin(convert(key))]
                                 value_occ_res = multi_row.Occupancy_Resolution.item()
