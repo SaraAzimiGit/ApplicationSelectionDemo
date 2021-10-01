@@ -105,15 +105,18 @@ best suits your facility management application needs""")
                 for f in range(len(sensor) + 1):  # iterate number of items in combination
                     if f>=2:
                         for i in r_subset(sensor, f):  # iterate over every combination
+                            is_ok = False
                             for key in i:  # iterate over any item in a combination
                                 multi_row = min_table[min_table['Sensor'].isin(convert(key))]
                                 value_occ_res = multi_row.Occupancy_Resolution.item()
                                 value_spatial_res = multi_row.Spatial_Resolution.item()
                                 value_acc = multi_row.Accuracy.item()
                                 if (value_occ_res >= max_occ_res) and (value_spatial_res >= max_spatial_res) and (value_acc >= max_acc):  # pick any item in a  combination that meets the criteria
-                                    info = df_0.loc[i, :]
-                                    info = info.drop(columns='Sensor')
-                                    info.update(df1_1)
-                                    st.dataframe(info)
+                                    is_ok = True    
+                             if is_ok:
+                                info=df_0.loc[i,:]
+                                info=info.drop(columns='Sensor')
+                                info.update(df1_1)
+                                st.dataframe(info)
 if __name__ == "__main__":
     main()
