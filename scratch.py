@@ -15,9 +15,9 @@ def main():
     siteHeader = st.container()
     appSelection = st.container()
     with siteHeader:
-        st.title('Occupancy detection technology selection tool')
-        st.text("""With this tool you can find out which occupancy sensing technology 
-best suits your facility management application needs""")
+        st.title('Occupancy detection technology screening tool')
+        st.text("""With this tool you can screen for the best occupancy detection options 
+that suits your facility management application needs""")
 
     with appSelection:
         info_app = {'Occupancy Resolution': [4, 4, 2, 3, 3, 3, 2, 1, 2, 1, 1, 2, 2, 2],
